@@ -25,9 +25,9 @@ function isEven(n) {
   return isEven(n - 2);             
 }
 
-console.log(isEven(50));  
-console.log(isEven(75));  
-console.log(isEven(-1));  
+console.log(isEven(80));  
+console.log(isEven(45));  
+console.log(isEven(-5));  
 
 
 // Bean Counting
@@ -54,5 +54,6 @@ function countBs(string) {
 console.log(countBs("LOBBY"));
 
 console.log(countChar("Mississippi", "s"));
+
 
 // https://chatgpt.com/share/68c1408a-92b4-800a-8d24-1dee682a2a73
