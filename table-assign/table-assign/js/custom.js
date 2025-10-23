@@ -35,3 +35,48 @@
  ]
 
  // complete with code to select and populate the table
+document.addEventListener("DOMContentLoaded", () => {
+  // Locate the table by ID from index.html
+  const table = document.querySelector("#bhangra");
+  if (!table) return;
+
+  // Create and append the header
+  const thead = document.createElement("thead");
+  const headerRow = document.createElement("tr");
+  ["Name", "Year of Birth", "Link"].forEach(text => {
+    const th = document.createElement("th");
+    th.textContent = text;
+    headerRow.appendChild(th);
+  });
+  thead.appendChild(headerRow);
+  table.appendChild(thead);
+
+  // Create and append the body
+  const tbody = document.createElement("tbody");
+
+  artists.forEach(artist => {
+    const tr = document.createElement("tr");
+
+    const tdName = document.createElement("td");
+    tdName.textContent = artist.name;
+
+    const tdYear = document.createElement("td");
+    tdYear.textContent = artist.birthYear;
+
+    const tdLink = document.createElement("td");
+    const a = document.createElement("a");
+    a.href = artist.link;
+    a.textContent = "Video";
+    a.target = "_blank";
+    a.rel = "noopener";
+    tdLink.appendChild(a);
+
+    tr.append(tdName, tdYear, tdLink);
+    tbody.appendChild(tr);
+  });
+
+  table.appendChild(tbody);
+});
+
+
+

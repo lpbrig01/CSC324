@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head></head>
+  <body>
+    <h1>Mountains</h1>
+    <div id="mountains"></div>
+  </body>
+  <script>
+    const MOUNTAINS = [
+      {name: "Kilimanjaro", height: 5895, place: "Tanzania", url: "https://en.wikipedia.org/wiki/Mount_Kilimanjaro"},
+      {name: "Everest", height: 8848, place: "Nepal", url: "https://en.wikipedia.org/wiki/Mount_Everest"},
+      {name: "Mount Fuji", height: 3776, place: "Japan", url: "https://en.wikipedia.org/wiki/Mount_Fuji"},
+      {name: "Vaalserberg", height: 323, place: "Netherlands", url: "https://en.wikipedia.org/wiki/Vaalserberg"},
+      {name: "Denali", height: 6168, place: "United States", url: "https://en.wikipedia.org/wiki/Denali"},
+      {name: "Popocatepetl", height: 5465, place: "Mexico", url: "https://en.wikipedia.org/wiki/Popocat%C3%A9petl"},
+      {name: "Mont Blanc", height: 4808, place: "Italy/France", url: "https://en.wikipedia.org/wiki/Mont_Blanc"}
+    ];
+
+    // the main work:
+    // first, identify the element into which to place the table:
+    const target = document.getElementById("mountains");
+    const mountainTable = makeTable(MOUNTAINS);
+    target.appendChild(mountainTable);
+    
+    // utility functions:
+
+    // function to make a table from an array of objects:
+    function makeTable(arr) {
+      // create a table element:
+      const table = document.createElement("table");
+      // use first object in the array to make the header:
+      table.innerHTML = makeTableHeader(arr[0]);
+      for (let obj of arr) {
+        table.innerHTML += makeTableRow(obj);
+      }
+      console.log(table.innerHTML);
+      // don't forget to return the table:
+      return table;
+    }
+
+    // function to make a table header:
+    function makeTableHeader(obj) {
+      let inner = "<tr>";
+      // fill it in with the th-elements:
+      for (let columnName of Object.keys(obj)) {
+        if (columnName !== "url") {
+          inner += `<th>${columnName}</th>`;
+        }
+      }
+      // add the closer:
+      inner += "</tr>";
+      console.log(inner);
+      return inner;
+    }
+
+    // function to make a table row:
+    function makeTableRow(obj) {
+      let inner = "<tr>";
+      for (let key of Object.keys(obj)) {
+        if (key === "name") {
+          const anchorHTML = `<a href="${obj["url"]}" target="_blank">${obj["name"]}</a>`;
+          inner += `<td>${anchorHTML}</td>`;
+        } else if (key === "url") {
+          inner += "";
+        } else {
+          inner += `<td>${obj[key]}</td>`;
+        }
+      }
+      inner += "</tr>";
+      return inner;
+    }
+
+    
+  </script>
+</html>
+
+
